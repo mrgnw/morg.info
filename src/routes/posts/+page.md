@@ -1,12 +1,12 @@
 <script>
     export let data;
-		let slugs = data.slugs
-		console.log(data)
+		let posts = data.posts
 
 </script>
 
+{JSON.stringify(posts)}
 <ul>
-    {#each slugs as slug}
-        <li><a href={`/posts/${slug}`}>{slug}</a></li>
+    {#each posts as post}		
+        <li><a href={`/posts/${post.slug}`}>{post.slug}</a></li>
     {/each}
 </ul>
