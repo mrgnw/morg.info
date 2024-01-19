@@ -1,3 +1,4 @@
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 import { mdsvex } from "mdsvex";
 import mdsvexConfig from "./mdsvex.config.js";
 import preprocess from "svelte-preprocess";
@@ -10,6 +11,9 @@ const config = {
 	kit: {
 		alias: {
 			$components: "./src/components",
+			$posts: "./src/posts/",
+			$lib: "./src/lib/",
+			"@/*": "./src/*"
 		},
 		adapter: adapter({
 			pages: "build",
@@ -29,7 +33,16 @@ const config = {
 			postcss: true,
 		}),
 		mdsvex(mdsvexConfig),
+		vitePreprocess({}),
 	],
+
+	prerender: {
+		entries: [
+			'/posts/',
+			'/posts/*',
+		]
+	}
+
 };
 
 export default config;
